@@ -4,13 +4,10 @@ import {
   getFirestore,
   collection,
   getDocs,
-  doc,
-  getDoc,
-} from "firebase/firestore";
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
-import UserCard from "../components/UserCard";
+} from "firebase/firestore"; //doc, getDoc
+import { BarChart, Bar, XAxis, YAxis } from "recharts";
+import UsersTable from "../components/UsersTable";
 import { Link } from "react-router-dom";
-import Countries from "../components/Countries";
 
 // variable con las credenciales de firebase
 const db = getFirestore(firebaseApp);
@@ -34,7 +31,7 @@ const UsersList = () => {
       }
     };
     getList();
-  }, []);
+  }, [list]);
 
   // Cantidad de usuarios por pais
   const arg = list.filter((el) => el.country_of_origin === "argentina");
@@ -62,7 +59,7 @@ const UsersList = () => {
       <div className="table-responsive">
         <h2 className="text-center text-info p-4 mb-4">Usuarios</h2>
         <table className="table table-bordered text-info">
-          <thead className="fs-5">
+          <thead className="fs-5 text-center">
             <tr>
               <th>Id</th>
               <th>Nombre completo</th>
@@ -71,15 +68,16 @@ const UsersList = () => {
               <th>Pais de origen</th>
             </tr>
           </thead>
-          <tbody className="text-dark text-capitalize">
+          <tbody className="text-dark">
             {list.map((el) => (
-              <UserCard
+              <UsersTable
                 key={el.id}
                 id={el.id}
                 country_of_origin={el.country_of_origin}
                 full_name={el.full_name}
                 birth_date={el.birth_date}
                 email={el.email}
+                button={el.button}
               />
             ))}
           </tbody>
@@ -93,22 +91,12 @@ const UsersList = () => {
       <div className="d-flex justify-content-center mt-2">
         <h3 className="text-info">Encuesta de usuarios por pais</h3>
       </div>
-      <div className="d-flex justify-content-center mt-5">
-        <PieChart width={500} height={220}>
-          <Pie
-            dataKey="value"
-            startAngle={180}
-            endAngle={0}
-            data={data}
-            cx="50%"
-            cy="50%"
-            outerRadius={80}
-            fill="#17202A"
-            label
-          />
-        </PieChart>
-      </div>
-      <div className="d-flex justify-content-center p-1">
+      <div className="d-flex justify-content-center mt-5 pb-2 fs-4">
+      <BarChart width={940} height={230} data={data}>
+          <Bar dataKey="value" fill="#8884d8" />
+          <XAxis dataKey="name" />
+          <YAxis />
+        </BarChart>
         <div className="dropdown">
           <button
             className="btn btn-outline-dark btn-lg dropdown-toggle"
@@ -119,13 +107,11 @@ const UsersList = () => {
             Usuarios por pais
           </button>
           <ul className="dropdown-menu">
-            <li>
-              {data?.map((el) => (
-                <a className="dropdown-item" value={el.name} key={el.name}>
-                  {el.name} : {el.value}
-                </a>
-              ))}
-            </li>
+            {data?.map((el) => (
+              <li className="dropdown-item fs-4" key={el.name}>
+                {el.name} : {el.value}
+              </li>
+            ))}
           </ul>
         </div>
       </div>

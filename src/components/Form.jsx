@@ -27,10 +27,9 @@ function Form() {
 
   const handleOfSubmit = async (e) => {
     e.preventDefault();
-    if (users) {
-      theAlert();
-    } else {
-      try {
+    users && theAlert();
+
+    try {
         await addDoc(collection(db, "usuarios"), {
           ...users,
         });
@@ -38,7 +37,7 @@ function Form() {
         console.log(error);
       }
       document.getElementById("myForm").reset();
-    }
+    
   };
 
   // Alerta con ruta para ver la lista de users

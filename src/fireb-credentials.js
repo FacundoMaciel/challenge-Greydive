@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyC4ykwpm_t1LIug4Q6QvYgoMeiFyv5rUxc",
-  authDomain: "challengegreydive-329fb.firebaseapp.com",
-  projectId: "challengegreydive-329fb",
-  storageBucket: "challengegreydive-329fb.appspot.com",
-  messagingSenderId: "844528651333",
-  appId: "1:844528651333:web:9ff08f77dd3323e3db272c"
+  apiKey: "AIzaSyB5zplJlj10WfUnyQZ6qAtvtAoDMMyP0JE",
+  authDomain: "greydive-61910.firebaseapp.com",
+  projectId: "greydive-61910",
+  storageBucket: "greydive-61910.appspot.com",
+  messagingSenderId: "683710760203",
+  appId: "1:683710760203:web:b7f4bd52b230789abace0e"
 };
 
 // Initialize Firebase
