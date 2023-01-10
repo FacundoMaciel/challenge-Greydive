@@ -21,7 +21,7 @@ const UserCard = ({ full_name, birth_date, email, country_of_origin, id }) => {
         <td>{email}</td>
         <td className="text-capitalize">{country_of_origin}</td>
         <td type="button" onClick={()=>deleteUser(id)}
-        className="btn btn-danger text-dark border border-left-0 border-right-0">Eliminar</td>
+        className="btn btn-danger text-dark border border-left-0 border-right-0">🗑️</td>
       </tr>
     </>
   );

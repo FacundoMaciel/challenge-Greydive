@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import firebaseApp from "../fireb-credentials";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-} from "firebase/firestore"; //doc, getDoc
+import { getFirestore, collection, getDocs } from "firebase/firestore"; //doc, getDoc
 import { BarChart, Bar, XAxis, YAxis } from "recharts";
 import UsersTable from "../components/UsersTable";
 import { Link } from "react-router-dom";
@@ -45,21 +41,21 @@ const UsersList = () => {
 
   // Info para mostrar en el gráfico
   const data = [
-    { name: "Argentina", value: arg.length },
-    { name: "Brasil", value: bra.length },
-    { name: "Colombia", value: col.length },
-    { name: "Perú", value: per.length },
-    { name: "Uruguay", value: uru.length },
-    { name: "Venezuela", value: ven.length },
-    { name: "Mexico", value: mex.length },
-    { name: "Chile", value: chi.length },
+    { name: "Arg", value: arg.length },
+    { name: "Bra", value: bra.length },
+    { name: "Col", value: col.length },
+    { name: "Per", value: per.length },
+    { name: "Uru", value: uru.length },
+    { name: "Ven", value: ven.length },
+    { name: "Mex", value: mex.length },
+    { name: "Chi", value: chi.length },
   ];
 
   return (
-    <div>
+    <div className="container">
       <div className="table-responsive">
         <h2 className="text-center text-info p-4 mb-4">Usuarios</h2>
-        <table className="table table-bordered text-info">
+        <table className="table table-striped text-info">
           <thead className="fs-5 text-center">
             <tr>
               <th>Id</th>
@@ -84,7 +80,7 @@ const UsersList = () => {
             ))}
           </tbody>
         </table>
-         {/* Boton para volver al home */}
+        {/* Boton para volver al home */}
         <div className="d-flex justify-content-center p-1">
           <Link to="/">
             <button className="btn btn-outline-dark btn-lg">Volver</button>
@@ -94,9 +90,9 @@ const UsersList = () => {
       <div className="d-flex justify-content-center mt-2">
         <h3 className="text-info">Encuesta de usuarios por pais</h3>
       </div>
-       {/* Grafico y menu desplegable con los datos de usuarios por pais  */}
+      {/* Grafico y menu desplegable con los datos de usuarios por pais  */}
       <div className="d-flex justify-content-center mt-5 pb-2 fs-4">
-      <BarChart width={940} height={230} data={data}>
+        <BarChart width={500} height={230} data={data}>
           <Bar dataKey="value" fill="#8884d8" />
           <XAxis dataKey="name" />
           <YAxis />
