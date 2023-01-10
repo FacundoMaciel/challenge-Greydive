@@ -56,7 +56,7 @@ function Form() {
       confirmButtonText: `Go`,
     }).then((result) => {
       if (result.value) {
-        window.location.href = `https://challenge-graydive.vercel.app/users`;
+        window.location.href = `https://challenge-greydive-alpha.vercel.app/users`;
       }
     });
   };
