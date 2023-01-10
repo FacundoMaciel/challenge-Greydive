@@ -2,11 +2,12 @@ import React from "react";
 import { deleteDoc, doc, getFirestore } from "firebase/firestore";
 import firebaseApp from "../fireb-credentials";
 
+// Credenciales de base de datos firestore de firebase
 const db = getFirestore(firebaseApp);
 
 const UserCard = ({ full_name, birth_date, email, country_of_origin, id }) => {
 
-  //funcion elminar usuario
+  //funcion para elminar usuario
   const deleteUser = async(id) => {
     await deleteDoc(doc(db,'usuarios', id))
   }

@@ -4,6 +4,7 @@ import firebaseApp from "../fireb-credentials";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import Swal from "sweetalert2";
 
+// Credenciales de base de datos firestore de firebase
 const db = getFirestore(firebaseApp);
 
 function Form() {
@@ -15,16 +16,16 @@ function Form() {
     country_of_origin: "",
   };
 
-  // Variables de estado
+  // Variables de estado local
   const [users, setUsers] = useState(initialValue);
 
-  // Funciones para manejar el valor del imput, manejar el envio de los datos,
-  // reestrablecer los campos a input vacio
+  // Funcion para manejar el valor de los inputs y setear los valores al estado local.
   const handleOfinputs = (e) => {
     const { name, value } = e.target;
     setUsers({ ...users, [name]: value });
   };
 
+  // Funcion para manejar la info enviada por el formulario a la base de datos, disparar la alerta y reestablecer los campos del mismo a vacíos.
   const handleOfSubmit = async (e) => {
     e.preventDefault();
     users && theAlert();
@@ -40,7 +41,7 @@ function Form() {
     
   };
 
-  // Alerta con ruta para ver la lista de users
+  // Alerta con la ruta para ver la lista de usuarios 
   const theAlert = () => {
     Swal.fire({
       title: "<strong>Usuario guardado correctamente</strong>",
@@ -55,7 +56,7 @@ function Form() {
       confirmButtonText: `Go`,
     }).then((result) => {
       if (result.value) {
-        window.location.href = `/users`;
+        window.location.href = `https://challenge-graydive.vercel.app/users`;
       }
     });
   };
@@ -73,6 +74,7 @@ function Form() {
           </strong>
         </div>
         <hr className="border-bottom border-info" />
+        {/* Logica donde se indica que los inputs no sean de tipos checkbox ni submit ni tampoco sean selects */}
         {data &&
           data.items.map((item) => {
             return (
@@ -95,6 +97,7 @@ function Form() {
                       />
                     </div>
                   ) : null}
+                  {/* Logica donde se indica que este campo va ser de un tipo select */}
                   {item.options ? (
                     <div>
                       <label className="control-label text-info">
@@ -123,6 +126,7 @@ function Form() {
                       <br />
                     </div>
                   ) : null}
+                  {/* Logica donde se indica que este item va ser de un tipo checkbox */}
                   {item.type === "checkbox" ? (
                     <div className="d-flex justify-content-center border-top border-info pt-2 mt-3">
                       <label className="control-label text-info p-2">
@@ -131,6 +135,7 @@ function Form() {
                       <input type={item.type} name={item.name} required />
                     </div>
                   ) : null}
+                  {/* Logica donde se indica que este item va ser de un tipo submit */}
                   {item.type === "submit" ? (
                     <div className="d-flex justify-content-center">
                       <button

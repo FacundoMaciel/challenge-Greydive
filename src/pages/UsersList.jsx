@@ -20,7 +20,7 @@ const UsersList = () => {
   useEffect(() => {
     const getList = async () => {
       try {
-        const getData = await getDocs(collection(db, "usuarios"));
+        const getData = await getDocs(collection(db, "usuarios")); // Metodo getDocs de firebase
         const docs = [];
         getData.forEach((doc) => {
           docs.push({ ...doc.data(), id: doc.id });
@@ -43,6 +43,7 @@ const UsersList = () => {
   const mex = list.filter((el) => el.country_of_origin === "mexico");
   const chi = list.filter((el) => el.country_of_origin === "chile");
 
+  // Info para mostrar en el gráfico
   const data = [
     { name: "Argentina", value: arg.length },
     { name: "Brasil", value: bra.length },
@@ -69,6 +70,7 @@ const UsersList = () => {
             </tr>
           </thead>
           <tbody className="text-dark">
+            {/* Componente con el cuerpo y propiedades que muestra la lista de usuarios */}
             {list.map((el) => (
               <UsersTable
                 key={el.id}
@@ -82,6 +84,7 @@ const UsersList = () => {
             ))}
           </tbody>
         </table>
+         {/* Boton para volver al home */}
         <div className="d-flex justify-content-center p-1">
           <Link to="/">
             <button className="btn btn-outline-dark btn-lg">Volver</button>
@@ -91,6 +94,7 @@ const UsersList = () => {
       <div className="d-flex justify-content-center mt-2">
         <h3 className="text-info">Encuesta de usuarios por pais</h3>
       </div>
+       {/* Grafico y menu desplegable con los datos de usuarios por pais  */}
       <div className="d-flex justify-content-center mt-5 pb-2 fs-4">
       <BarChart width={940} height={230} data={data}>
           <Bar dataKey="value" fill="#8884d8" />
