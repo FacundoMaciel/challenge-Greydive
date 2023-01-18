@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import firebaseApp from "../fireb-credentials";
 import { getFirestore, collection, getDocs } from "firebase/firestore"; //doc, getDoc
-import { BarChart, Bar, XAxis, YAxis } from "recharts";
-import UsersTable from "../components/UsersTable";
+import UsersCard from "../components/UsersCard";
 import { Link } from "react-router-dom";
 
 // variable con las credenciales de firebase
@@ -53,50 +52,28 @@ const UsersList = () => {
 
   return (
     <div className="container">
-      <div className="table-responsive">
-        <h2 className="text-center text-info p-4 mb-4">Usuarios</h2>
-        <table className="table table-striped text-info">
-          <thead className="fs-5 text-center">
-            <tr>
-              <th>Id</th>
-              <th>Nombre completo</th>
-              <th>Fecha de nacimiento</th>
-              <th>Email</th>
-              <th>Pais de origen</th>
-            </tr>
-          </thead>
-          <tbody className="text-dark">
-            {/* Componente con el cuerpo y propiedades que muestra la lista de usuarios */}
-            {list.map((el) => (
-              <UsersTable
-                key={el.id}
-                id={el.id}
-                country_of_origin={el.country_of_origin}
-                full_name={el.full_name}
-                birth_date={el.birth_date}
-                email={el.email}
-                button={el.button}
-              />
-            ))}
-          </tbody>
-        </table>
-        {/* Boton para volver al home */}
-        <div className="d-flex justify-content-center p-1">
-          <Link to="/">
-            <button className="btn btn-outline-dark btn-lg">Volver</button>
-          </Link>
+      <h2 className="text-center text-info p-4 mb-4 bg-dark mt-2 shadow">Usuarios</h2>
+      <div className="container mt-5 mb-3">
+        <div className="row justify-content-center">
+        {list.map((el)=>{
+          return(
+          <UsersCard 
+          key={el.id}
+          country_of_origin={el.country_of_origin}
+          full_name={el.full_name}
+          birth_date={el.birth_date}
+          email={el.email}
+          id={el.id}
+          />
+          )
+        })}
         </div>
       </div>
       <div className="d-flex justify-content-center mt-2">
-        <h3 className="text-info">Encuesta de usuarios por pais</h3>
+        <h3 className="text-center text-info p-4 mb-4 bg-dark mt-2 shadow">Registros</h3>
       </div>
-      {/* Grafico y menu desplegable con los datos de usuarios por pais  */}
-      <div className="d-flex justify-content-center mt-5 pb-2 fs-4">
-        <BarChart width={500} height={230} data={data}>
-          <Bar dataKey="value" fill="#8884d8" />
-          <XAxis dataKey="name" />
-          <YAxis />
-        </BarChart>
+      {/*menu desplegable con los datos de usuarios por pais  */}
+      <div className="d-flex justify-content-center">
         <div className="dropdown">
           <button
             className="btn btn-outline-dark btn-lg dropdown-toggle"
@@ -114,6 +91,12 @@ const UsersList = () => {
             ))}
           </ul>
         </div>
+      </div>
+      {/* Boton para volver al home */}
+      <div className="d-flex justify-content-center p-1">
+        <Link to="/">
+          <button className="btn btn-outline-dark btn-lg">Volver</button>
+        </Link>
       </div>
     </div>
   );

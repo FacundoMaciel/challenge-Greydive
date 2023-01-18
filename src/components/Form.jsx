@@ -62,11 +62,11 @@ function Form() {
   };
 
   return (
-    <div>
+    <div className="container d-flex justify-content-center">
       <form
         id="myForm"
         onSubmit={handleOfSubmit}
-        className="w-auto p-3 m-3 fs-5"
+        className="w-auto p-3 m-3 fs-4"
       >
         <div className="bg-info mb-4 rounded-top container-fluid py-4 text-center text-white text-uppercase py-1 header-offer">
           <strong className="bg-transparent text-dark">
@@ -84,12 +84,12 @@ function Form() {
                   item.type !== "checkbox" &&
                   item.type !== "submit" ? (
                     <div>
-                      <label className="control-label text-info">
+                      <label className="control-label text-dark">
                         {item.label}
                       </label>
                       <input
                         type={item.type}
-                        className="form-control"
+                        className="form-control bg-info"
                         name={item.name}
                         placeholder={item.name}
                         required
@@ -100,17 +100,17 @@ function Form() {
                   {/* Logica donde se indica que este campo va ser de un tipo select */}
                   {item.options ? (
                     <div>
-                      <label className="control-label text-info">
+                      <label className="control-label text-dark">
                         {item.label}
                       </label>
                       <select
-                        className="form-control"
+                        className="form-control bg-info text-capitalize"
                         name={item.name}
                         onChange={handleOfinputs}
                         required
                       >
                         {item.label}
-                        <option className="text-info pointer fs-5" value={null}>
+                        <option className="text-black pointer fs-5" value={null}>
                           {item.name}
                         </option>
                         {item.options.map((el) => (
@@ -128,8 +128,8 @@ function Form() {
                   ) : null}
                   {/* Logica donde se indica que este item va ser de un tipo checkbox */}
                   {item.type === "checkbox" ? (
-                    <div className="d-flex justify-content-center border-top border-info pt-2 mt-3">
-                      <label className="control-label text-info p-2">
+                    <div className="d-flex justify-content-center fs-4 border-top border-info p-1 pt-2 mt-1 bg-info rounded">
+                      <label className="control-label text-dark p-2">
                         {item.label}
                       </label>
                       <input type={item.type} name={item.name} required />
@@ -139,7 +139,7 @@ function Form() {
                   {item.type === "submit" ? (
                     <div className="d-flex justify-content-center">
                       <button
-                        className="btn btn-outline-info btn-lg"
+                        className="btn btn-outline-info btn-lg text-dark"
                         type={item.type}
                       >
                         {item.label}
